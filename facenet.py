@@ -35,10 +35,12 @@ def videoDetector(cam,cascade,age_net,gender_net,MODEL_MEAN_VALUES,age_list,gend
                 print(age_list[index],":",round(data,4)*100,"%")
                 age+= age_list[index]*round(data,4)
             
-            sum_age += age
+            # sum_age += age
             
-            div_age = round(sum_age/count,0)
-            info = gender_list[gender] + "age = " + str(div_age)
+            age = round(age,0)
+            
+            # div_age = round(sum_age/count,0)
+            info = gender_list[gender] + "age = " + str(age)
             count +=1
             print(age)
             cv2.rectangle(img, (x,y), (x+w, y+h), (255,255,255), thickness=2)
@@ -65,7 +67,7 @@ gender_net = cv2.dnn.readNetFromCaffe(
 	'deploy_gender.prototxt',
 	'gender_net.caffemodel')
 
-age_list = [5,13,18,25,30,41,60,90]
+age_list = [10,13,18,25,32,41,60,90]
 gender_list = ['Male', 'Female']
 
 cam = cv2.VideoCapture(0)
